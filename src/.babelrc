@@ -1,4 +1,3 @@
 {
-  "presets": [ [ "es2015", { "modules": false } ] ], // Otherwise Babel will convert the modules to CommonJS before Rollup gets a chance to do its thing
-  "plugins": ["external-helpers"] // Include any 'helpers' just once at the top of the bundle
+  "presets": [ [ "@babel/preset-env", { "modules": false } ] ], // Otherwise Babel will convert the modules to CommonJS before Rollup gets a chance to do its thing
 }

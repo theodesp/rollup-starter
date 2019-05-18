@@ -1,5 +1,5 @@
 import babel from 'rollup-plugin-babel';
-import eslint from 'rollup-plugin-eslint';
+import { eslint } from 'rollup-plugin-eslint';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
@@ -16,9 +16,7 @@ import cssnext from 'postcss-cssnext';
 import cssnano from 'cssnano';
 
 export default  {
-  entry: 'src/main.js',
-  format: 'cjs',
-  moduleName: 'app',
+  input: 'src/main.js',
   plugins: [
     postcss({
       plugins: [
@@ -41,6 +39,7 @@ export default  {
     commonjs(),
     babel({
       exclude: 'node_modules/**',
+      runtimeHelpers: false,
     }),
     eslint({
       exclude: [
@@ -53,6 +52,9 @@ export default  {
       clearLine: false // default: true
     })
   ],
-  dest: 'dest/app.js', // equivalent to --output
-  sourceMap: true
+  output: {
+    file: 'dest/app.js', // equivalent to --output,
+    format: 'iife', // immediately-invoked function expression — suitable for <script> tags
+    sourceMap: true
+  }
 };
